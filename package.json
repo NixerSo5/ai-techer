@@ -1,0 +1,19 @@
+{
+  "name": "ai-teacher",
+  "private": true,
+  "version": "0.1.0",
+  "description": "AI teaching agent with knowledge graph, learning path and step-by-step tutoring",
+  "workspaces": [
+    "server",
+    "web",
+    "desktop"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=server",
+    "dev:web": "npm run dev --workspace=web",
+    "build": "npm run build --workspace=server && npm run build --workspace=web",
+    "desktop:dev": "npm run build && npm run start --workspace=desktop",
+    "desktop:pack": "npm run build && npm run pack --workspace=desktop",
+    "desktop:dist": "npm run build && npm run dist --workspace=desktop"
+  }
+}

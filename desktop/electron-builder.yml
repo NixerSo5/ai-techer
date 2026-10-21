@@ -1,0 +1,50 @@
+appId: com.aiteacher.desktop
+productName: AI Teacher
+copyright: AI Teacher
+
+directories:
+  output: release
+  buildResources: build
+
+# better-sqlite3 is already installed as the Electron-ABI prebuild (via
+# prebuild-install --runtime=electron). Letting electron-builder rebuild it
+# would try to download Electron headers and fail, so skip it.
+npmRebuild: false
+
+# The repo uses npm workspaces, so electron lives in the root node_modules and
+# electron-builder cannot detect it from desktop/. Point it at the binary.
+electronDist: ../node_modules/electron/dist
+
+# electron-builder packages the prepared tree, not the source repo.
+files:
+  - main.cjs
+  - package.json
+  - server/**/*
+  - web/**/*
+  - "!**/*.map"
+  - "!server/**/*.d.ts"
+
+# better-sqlite3 ships a prebuilt .node binary that cannot be loaded from
+# inside an asar archive, so it has to stay on the real filesystem.
+asar: true
+asarUnpack:
+  - server/node_modules/better-sqlite3/**/*
+
+win:
+  target:
+    - target: nsis
+      arch:
+        - x64
+  artifactName: ${productName}-${version}-setup.${ext}
+
+nsis:
+  oneClick: false
+  perMachine: false
+  allowToChangeInstallationDirectory: true
+  createDesktopShortcut: true
+  createStartMenuShortcut: true
+  shortcutName: AI Teacher
+  deleteAppDataOnUninstall: false
+
+# The front-end is a plain SPA; no compression tweaks needed.
+compression: normal

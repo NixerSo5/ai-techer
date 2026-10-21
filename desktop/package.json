@@ -1,0 +1,18 @@
+{
+  "name": "@ai-teacher/desktop",
+  "version": "0.1.0",
+  "private": true,
+  "main": "main.cjs",
+  "description": "AI Teacher desktop shell (Electron)",
+  "scripts": {
+    "start": "electron .",
+    "build": "node scripts/prepare-dist.mjs",
+    "pack": "npm run build && electron-builder --win --dir --config.directories.app=dist-app",
+    "dist": "npm run build && electron-builder --win --config.directories.app=dist-app"
+  },
+  "devDependencies": {
+    "@electron/rebuild": "^4.2.1",
+    "electron": "33.4.11",
+    "electron-builder": "^25.1.8"
+  }
+}

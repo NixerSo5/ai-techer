@@ -1,0 +1,25 @@
+node_modules/
+dist/
+**/dist/
+
+# Local runtime data: SQLite DB, uploads, temp API payloads, manual test files.
+# Nothing under data/ is source — keep only the placeholder.
+data/*
+!data/.gitkeep
+
+# Build / packaging output
+desktop/dist-app/
+desktop/release/
+
+# Local dev artifacts
+dump-settings*.cjs
+.env
+.env.*
+*.log
+.DS_Store
+
+# TypeScript incremental build cache
+*.tsbuildinfo
+
+# TS incremental build cache
+*.tsbuildinfo
